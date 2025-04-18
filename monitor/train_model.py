@@ -6,7 +6,7 @@ from sklearn.metrics import classification_report
 import joblib
 
 
-df = pd.read_csv("myapp/data/machine_data.csv")
+df = pd.read_csv("monitor/data/machine_data.csv")
 X = df[["temperature", "vibration"]]
 y = df["failure"]
 

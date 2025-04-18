@@ -15,4 +15,4 @@ def sensor_view(request):
     else:
         form = SensorReadingForm()
     
-    return render(request, "myapp/dashboard.html", {"form": form, "result": result})
+    return render(request, "monitor/dashboard.html", {"form": form, "result": result})
