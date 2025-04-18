@@ -5,7 +5,8 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import classification_report
 import joblib
 
-df = pd.read_csv("machine_data.csv")
+
+df = pd.read_csv("myapp/data/machine_data.csv")
 X = df[["temperature", "vibration"]]
 y = df["failure"]
 

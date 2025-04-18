@@ -1,0 +1,10 @@
+<h1>Digital Twin - Machine Health Monitor</h1>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Predict</button>
+</form>
+
+{% if result %}
+  <h2>Result: {{ result }}</h2>
+{% endif %}
