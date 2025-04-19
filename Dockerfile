@@ -24,4 +24,4 @@ RUN python manage.py collectstatic --noinput
 EXPOSE 8000
 
 # Run app using Gunicorn
-CMD ["gunicorn", "monitor.wsgi:application", "--bind", "0.0.0.0:8000"]
+CMD ["gunicorn", "digital_twin.wsgi:application", "--bind", "0.0.0.0:8000"]
