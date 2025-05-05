@@ -17,8 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from monitor.views import sensor_view
+from django.http import HttpResponse
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", sensor_view, name="dashboard"),
+    path("health/", lambda request: HttpResponse("OK"))
 ]

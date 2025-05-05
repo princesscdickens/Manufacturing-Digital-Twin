@@ -136,6 +136,9 @@ ENV/
 env.bak/
 venv.bak/
 
+# Mac stuff
+.DS_Store
+
 # Spyder project settings
 .spyderproject
 .spyproject
@@ -172,3 +175,7 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+terraform/.terraform.lock.hcl
+terraform/.terraform
+terraform/terraform.tfstate
+terraform/terraform.tfstate.backup
