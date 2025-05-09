@@ -147,26 +147,25 @@ resource "aws_ecs_task_definition" "app" {
           hostPort      = 8000,
           protocol      = "tcp"
         }
-      ]
-    }
-
+      ],
       environment = [
         {
-          name  = "ALLOWED_HOSTS"
-          value = aws_lb.app_alb.dns_name
+          name  = "ALLOWED_HOSTS",
+          value = "${aws_lb.app_alb.dns_name}"
         }
-      ]
-      
+      ],
       logConfiguration = {
-      logDriver = "awslogs",
-      options = {
-        awslogs-group         = "/ecs/digital-twin"
-        awslogs-region        = var.region
-        awslogs-stream-prefix = "ecs"
+        logDriver = "awslogs",
+        options = {
+          awslogs-group         = "/ecs/digital-twin",
+          awslogs-region        = var.region,
+          awslogs-stream-prefix = "ecs"
+        }
       }
     }
   ])
 }
+
 
 # ECS Service
 resource "aws_ecs_service" "app_service" {

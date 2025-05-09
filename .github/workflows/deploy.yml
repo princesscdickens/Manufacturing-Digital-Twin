@@ -31,7 +31,7 @@ jobs:
         run: terraform init
         working-directory: terraform
 
-      - name: Terraform Apply (first pass to create ECR and ALB)
+      - name: Terraform Apply
         run: terraform apply -auto-approve
         working-directory: terraform
 
