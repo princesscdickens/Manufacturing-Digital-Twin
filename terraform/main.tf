@@ -149,6 +149,22 @@ resource "aws_ecs_task_definition" "app" {
         }
       ]
     }
+
+      environment = [
+        {
+          name  = "ALLOWED_HOSTS"
+          value = aws_lb.app_alb.dns_name
+        }
+      ]
+      
+      logConfiguration = {
+      logDriver = "awslogs",
+      options = {
+        awslogs-group         = "/ecs/digital-twin"
+        awslogs-region        = var.region
+        awslogs-stream-prefix = "ecs"
+      }
+    }
   ])
 }
 
