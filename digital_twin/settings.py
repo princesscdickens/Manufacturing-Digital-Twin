@@ -31,10 +31,8 @@ DEBUG = True
 ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1']
 
 # Dynamically add ALB DNS name
-external_hosts = os.getenv("ALLOWED_HOSTS", "")
-if external_hosts:
-    ALLOWED_HOSTS += [host.strip() for host in external_hosts.split(",")]
-
+if os.getenv("ALLOWED_HOSTS"):
+    ALLOWED_HOSTS += os.getenv("ALLOWED_HOSTS").split(',')
 
 # Application definition
 
