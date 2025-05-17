@@ -157,15 +157,22 @@ resource "aws_ecs_task_definition" "app" {
       logConfiguration = {
         logDriver = "awslogs",
         options = {
-          awslogs-group         = "/ecs/digital-twin",
+          awslogs-group         = aws_cloudwatch_log_group.ecs_logs.name,
           awslogs-region        = var.region,
           awslogs-stream-prefix = "ecs"
         }
       }
     }
   ])
+
+  depends_on = [aws_cloudwatch_log_group.ecs_logs]
 }
 
+# Log group as required by Fargate
+resource "aws_cloudwatch_log_group" "ecs_logs" {
+  name              = "/ecs/digital-twin"
+  retention_in_days = 7
+}
 
 # ECS Service
 resource "aws_ecs_service" "app_service" {
