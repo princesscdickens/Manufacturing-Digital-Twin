@@ -1,4 +1,3 @@
-# Create your views here.
 from django.shortcuts import render
 from .forms import SensorReadingForm
 from .utils import predict_failure

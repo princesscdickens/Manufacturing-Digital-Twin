@@ -23,7 +23,6 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
 
-      # STEP 1: Terraform apply to provision infrastructure
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v3
 
@@ -35,7 +34,6 @@ jobs:
         run: terraform apply -auto-approve
         working-directory: terraform
 
-      # STEP 2: Log in to ECR 
       - name: Log in to Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v2
@@ -43,7 +41,6 @@ jobs:
       - name: Set image tag
         run: echo "IMAGE_TAG=latest" >> $GITHUB_ENV
 
-      # STEP 3: Build and push Docker image
       - name: Build Docker image
         run: |
           docker build -t $ECR_REPOSITORY:$IMAGE_TAG .
@@ -53,7 +50,6 @@ jobs:
         run: |
           docker push ${{ steps.login-ecr.outputs.registry }}/$ECR_REPOSITORY:$IMAGE_TAG
 
-      # STEP 4: Force ECS redeploy with new image
       - name: Force ECS service deploy
         run: |
           aws ecs update-service \

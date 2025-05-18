@@ -1,4 +1,3 @@
-# simulate_data.py
 import random
 import pandas as pd
 
